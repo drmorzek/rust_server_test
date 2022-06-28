@@ -10,7 +10,9 @@ use multiserver::ThreadPool;
 
 fn main() {
     let listener = TcpListener::bind("0.0.0.0:7878").unwrap();
-    let pool = ThreadPool::new(8);
+
+    let cpus = num_cpus::get();
+    let pool = ThreadPool::new(cpus);
 
     for stream in listener.incoming() {
 
